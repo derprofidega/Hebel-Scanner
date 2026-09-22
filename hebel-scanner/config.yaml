@@ -1,0 +1,107 @@
+# =====================================================================
+#  Hebel-Scanner – Regelwerk
+#  Alles, was das System entscheidet, steht hier. Grundsatz: erst testen,
+#  dann ändern – und nie so lange drehen, bis die Vergangenheit perfekt
+#  aussieht (Overfitting). Jede Änderung = neuer Backtest.
+# =====================================================================
+
+account:
+  size_eur: 10000              # wird vom GitHub-Secret ACCOUNT_EUR überschrieben (nicht öffentlich speichern)
+  risk_per_trade_pct: 0.25     # Testphase 0,25 %; Stufen 0,5 % / 1 % erst laut System-Status
+  max_open_risk_positions: 4   # max. 4 Positionen mit offenem Risiko (≈ 4 × 1 R)
+  max_new_per_day: 3           # Obergrenze – 0 ist ein gültiges Ergebnis
+  max_correlation: 0.70        # neue Position nur, wenn 60-Tage-Korrelation zu offenen ≤ 0,7
+  ratios: [0.1, 1.0]           # Bezugsverhältnisse für die Stückzahl-Tabelle
+
+# Welche Setups das System nutzt:  trade = handeln · observe = nur Paper-Tracking · off = aus
+setups:
+  pullback: trade              # Trend-Rücksetzer (Kernstrategie)
+  earnings_gap: observe        # Handel NACH Quartalszahlen – erst freischalten, wenn Backtest + Forward-Test es tragen
+  max_observe_per_day: 3
+
+universe:
+  sp500: true                  # S&P-500-Liste wird automatisch geladen (Fallback: universe/us_fallback.csv)
+  dax: true                    # universe/de.csv
+  extra: []                    # z. B. - {ticker: ASML, name: ASML, market: US}
+  exclude: []                  # z. B. [TSLA]
+
+data:
+  chunk_size: 50               # Titel pro Download-Paket (kleiner = schonender für das Rate-Limit)
+  pause_seconds: 4
+  retries: 3
+
+strategy:
+  # --- Trend & relative Stärke
+  sma_long: 200
+  sma_mid: 50
+  sma_mid_slope_days: 10
+  require_mid_above_long: false
+  ema_fast: 20
+  atr_len: 14
+  rs_lookback: 126             # ≈ 6 Monate Überrendite ggü. Heimatindex …
+  rs_skip: 5                   # … ohne die letzten 5 Tage (die enthalten den Rücksetzer)
+  rs_min_pct: 70               # nur die stärksten 30 % des Universums
+  # --- Rücksetzer & Umkehr
+  pullback_days: 3             # mind. 3 Schlusskurse in Folge tiefer
+  pullback_ema_tol_atr: 0.5    # Tief muss bis ≤ 0,5 ATR über die 20-EMA zurückkommen
+  pullback_above_mid: true     # Vortagesschluss noch über der 50-Tage-Linie
+  trigger_close_above_prior_high: true
+  trigger_min_clv: 0.5         # Schluss in der oberen Hälfte der Tagesspanne
+  # --- Qualität
+  min_price: 10
+  min_dollar_volume_m: 20      # Ø-Tagesumsatz ≥ 20 Mio. (USD bzw. EUR)
+  max_atr_pct: 5.0             # sehr wilde Titel (ATR > 5 % des Kurses) raus – Gap-Risiko
+  # --- Einstieg, Stop, KO-Korridor
+  entry_limit_atr: 0.25        # Limit = Schluss + 0,25 ATR (nicht hinterherlaufen)
+  stop_low_days: 5             # Stop unter dem 5-Tage-Tief …
+  stop_buffer_atr: 0.5         # … minus 0,5 ATR
+  min_stop_atr: 1.0
+  max_stop_atr: 4.0
+  ko_buffer_atr: 1.0           # Barriere mind. 1 ATR hinter dem Stop
+  ko_max_multiple: 2.0         # KO-Totalverlust höchstens 2 R
+  # --- Ausstieg
+  target_r: 2.0
+  partial_fraction: 0.5
+  time_stop_days: 10
+  runner_max_days: 30
+  runner_breakeven: true
+  trail_low_days: 2
+  # --- Earnings-Gap (Reaktion NACH den Zahlen)
+  gap_min_open_atr: 0.5        # Eröffnung mind. 0,5 ATR über Vortagesschluss
+  gap_min_move_atr: 2.0        # Tagesplus mind. 2 ATR
+  gap_min_vol_ratio: 2.5       # Volumen mind. 2,5× Ø der 20 Vortage
+  gap_min_clv: 0.5             # Schluss in der oberen Tageshälfte (Gewinne gehalten)
+  gap_max_move_pct: 25         # größere Sprünge sind oft Übernahmen → aus
+  gap_above_sma_long: true
+  gap_stop_buffer_atr: 0.25    # Stop unter dem Tief des Reaktionstags
+  gap_rs_min_pct: 0            # kein RS-Mindestwert (Rangfolge nutzt RS trotzdem)
+
+costs:
+  financing_pa_pct: 4.5        # Finanzierungskosten Open-End-KO p. a. (Emittenten-Satz)
+  spread_roundtrip_pct: 0.10   # Spread in % des Basiswerts je Kauf + Verkauf
+  fee_per_order_eur: 1.0
+
+filters:
+  earnings_block_days: 16      # Rücksetzer-Trades: keine Zahlen innerhalb 16 Kalendertagen nach Einstieg
+  max_earnings_lookups: 12
+  events_file: events.csv      # Zins-/Inflationstermine → an diesen Einstiegstagen keine neuen Trades
+  news_items: 3
+
+earnings_radar:
+  enabled: true
+  days_ahead: 7
+  max_items: 12
+  min_market_cap_usd: 5000000000
+  implied_move: true           # ATM-Straddle als vom Markt erwartete Bewegung (nur US)
+  de_lookups_per_run: 15       # DAX-Termine werden nach und nach abgefragt und zwischengespeichert
+
+backtest:
+  years: 8
+  risk_pct_for_fees: 1.0       # Gebühren im Backtest so, als würde mit 1 % Risiko gehandelt
+
+gates:
+  min_backtest_expectancy_r: 0.20
+  min_backtest_profit_factor: 1.3
+  forward_trades_stage1: 30
+  forward_trades_stage2: 50
+  abort_drawdown_factor: 1.5

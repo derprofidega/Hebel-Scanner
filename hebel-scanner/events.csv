@@ -1,0 +1,38 @@
+# Termine, an denen KEINE neuen Einstiege erfolgen (Einstiegstag = Tag nach dem Signal).
+# Format: YYYY-MM-DD,Beschreibung. Stand 22.09.2026, geprüft gegen die offiziellen Kalender:
+#   Fed:  federalreserve.gov/monetarypolicy/fomccalendars.htm  (Entscheidung = 2. Sitzungstag)
+#   EZB:  ecb.europa.eu/press/calendars/mgcgc/html/index.en.html  (Entscheidung = Tag 2)
+#   CPI:  bls.gov/schedule/news_release/cpi.htm  – der Plan für 2027 erscheint erst Ende 2026,
+#         bitte dann ergänzen. Der Scanner warnt im Report, wenn eine Terminart ausläuft.
+date,event
+2026-10-14,US-Inflation (CPI September)
+2026-10-28,Fed-Zinsentscheid
+2026-10-29,EZB-Zinsentscheid
+2026-11-10,US-Inflation (CPI Oktober)
+2026-12-09,Fed-Zinsentscheid
+2026-12-10,US-Inflation (CPI November)
+2026-12-17,EZB-Zinsentscheid
+2027-01-27,Fed-Zinsentscheid
+2027-02-04,EZB-Zinsentscheid
+2027-03-17,Fed-Zinsentscheid
+2027-03-18,EZB-Zinsentscheid
+2027-04-28,Fed-Zinsentscheid
+2027-04-29,EZB-Zinsentscheid
+2027-06-09,Fed-Zinsentscheid
+2027-06-10,EZB-Zinsentscheid
+2027-07-22,EZB-Zinsentscheid
+2027-07-28,Fed-Zinsentscheid
+2027-09-09,EZB-Zinsentscheid
+2027-09-15,Fed-Zinsentscheid
+2027-10-27,Fed-Zinsentscheid
+2027-10-28,EZB-Zinsentscheid
+2027-12-08,Fed-Zinsentscheid
+2027-12-16,EZB-Zinsentscheid
+2028-02-03,EZB-Zinsentscheid
+2028-03-23,EZB-Zinsentscheid
+2028-05-04,EZB-Zinsentscheid
+2028-06-08,EZB-Zinsentscheid
+2028-07-20,EZB-Zinsentscheid
+2028-09-07,EZB-Zinsentscheid
+2028-10-12,EZB-Zinsentscheid
+2028-12-07,EZB-Zinsentscheid

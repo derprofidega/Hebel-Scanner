@@ -1,0 +1,50 @@
+# Börsenfeiertage (ganztägig geschlossen) – für Einstiegstag und Zeitstop-Datum im Report.
+# US = NYSE/Nasdaq (laut NYSE-Kalender bis 2028), DE = Xetra (2028 nach Standardregeln – bitte mit dem
+# Xetra-Handelskalender abgleichen). Der Scanner warnt im Report, wenn die Liste ausläuft.
+market,date,name
+US,2026-01-01,New Year's Day
+US,2026-01-19,Martin Luther King Jr. Day
+US,2026-02-16,Washington's Birthday
+US,2026-04-03,Good Friday
+US,2026-05-25,Memorial Day
+US,2026-06-19,Juneteenth
+US,2026-07-03,Independence Day (observed)
+US,2026-09-07,Labor Day
+US,2026-11-26,Thanksgiving
+US,2026-12-25,Christmas
+US,2027-01-01,New Year's Day
+US,2027-01-18,Martin Luther King Jr. Day
+US,2027-02-15,Washington's Birthday
+US,2027-03-26,Good Friday
+US,2027-05-31,Memorial Day
+US,2027-06-18,Juneteenth (observed)
+US,2027-07-05,Independence Day (observed)
+US,2027-09-06,Labor Day
+US,2027-11-25,Thanksgiving
+US,2027-12-24,Christmas (observed)
+DE,2026-01-01,Neujahr
+DE,2026-04-03,Karfreitag
+DE,2026-04-06,Ostermontag
+DE,2026-05-01,Tag der Arbeit
+DE,2026-12-24,Heiligabend
+DE,2026-12-25,1. Weihnachtstag
+DE,2026-12-31,Silvester
+DE,2027-01-01,Neujahr
+DE,2027-03-26,Karfreitag
+DE,2027-03-29,Ostermontag
+DE,2027-12-24,Heiligabend
+DE,2027-12-31,Silvester
+US,2028-01-17,Martin Luther King Jr. Day
+US,2028-02-21,Washington's Birthday
+US,2028-04-14,Good Friday
+US,2028-05-29,Memorial Day
+US,2028-06-19,Juneteenth
+US,2028-07-04,Independence Day
+US,2028-09-04,Labor Day
+US,2028-11-23,Thanksgiving
+US,2028-12-25,Christmas
+DE,2028-04-14,Karfreitag
+DE,2028-04-17,Ostermontag
+DE,2028-05-01,Tag der Arbeit
+DE,2028-12-25,1. Weihnachtstag
+DE,2028-12-26,2. Weihnachtstag

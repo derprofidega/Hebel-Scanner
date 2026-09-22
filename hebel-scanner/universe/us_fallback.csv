@@ -1,0 +1,62 @@
+# Notfall-Liste, falls die S&P-500-Liste weder online noch im Cache verfügbar ist.
+ticker,name
+AAPL,Apple
+MSFT,Microsoft
+NVDA,NVIDIA
+AMZN,Amazon
+GOOGL,Alphabet A
+META,Meta Platforms
+AVGO,Broadcom
+TSLA,Tesla
+BRK-B,Berkshire Hathaway B
+JPM,JPMorgan Chase
+LLY,Eli Lilly
+V,Visa
+MA,Mastercard
+UNH,UnitedHealth
+XOM,Exxon Mobil
+COST,Costco
+HD,Home Depot
+PG,Procter & Gamble
+JNJ,Johnson & Johnson
+ABBV,AbbVie
+WMT,Walmart
+NFLX,Netflix
+BAC,Bank of America
+CRM,Salesforce
+ORCL,Oracle
+KO,Coca-Cola
+CVX,Chevron
+MRK,Merck & Co.
+AMD,Advanced Micro Devices
+PEP,PepsiCo
+TMO,Thermo Fisher
+ADBE,Adobe
+LIN,Linde
+ACN,Accenture
+MCD,McDonald's
+CSCO,Cisco
+ABT,Abbott
+WFC,Wells Fargo
+IBM,IBM
+GE,GE Aerospace
+CAT,Caterpillar
+INTU,Intuit
+QCOM,Qualcomm
+TXN,Texas Instruments
+AMAT,Applied Materials
+NOW,ServiceNow
+ISRG,Intuitive Surgical
+GS,Goldman Sachs
+MS,Morgan Stanley
+AXP,American Express
+UBER,Uber
+PLTR,Palantir
+BKNG,Booking Holdings
+SPGI,S&P Global
+RTX,RTX
+LOW,Lowe's
+HON,Honeywell
+UNP,Union Pacific
+DE,Deere
+MU,Micron
